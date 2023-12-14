@@ -1,8 +1,14 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Header() {
   return (
-    <div>Header</div>
+    <header>
+      <nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/addrow">Add row</NavLink>
+      </nav>
+    </header>
   )
 }
 

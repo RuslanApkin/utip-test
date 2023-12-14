@@ -12,7 +12,6 @@ import AddRow from './Pages/AddRow/AddRow';
 function App() {
   return (
     <>
-    <Header />
     <RouterProvider router={router} />
     </>
   );
@@ -24,10 +23,13 @@ const router = createBrowserRouter([
 
 function Root() {
   return (
+    <>
+    <Header />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="addrow" element={<AddRow />} />
+      <Route path="/addrow" element={<AddRow />} />
     </Routes>
+    </>
   );
 }
 

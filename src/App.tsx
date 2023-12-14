@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
 import {
   Route,
   Routes,
+  createBrowserRouter,
+  RouterProvider
 } from "react-router-dom";
 import Home from './Pages/Home/Home';
 import Header from './Components/Header';
@@ -12,11 +13,21 @@ function App() {
   return (
     <>
     <Header />
+    <RouterProvider router={router} />
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  { path: "*", Component: Root },
+]);
+
+function Root() {
+  return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="product/:productId" element={<AddRow />} />
+      <Route path="addrow" element={<AddRow />} />
     </Routes>
-    </>
   );
 }
 

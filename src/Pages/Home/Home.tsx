@@ -16,15 +16,9 @@ function Home() {
         <div>
             <h1>Table</h1>
             <button onClick={fetchData} disabled={isFetch}>
-                Fetch data
+                {isFetch ? "fetching..." : "Fetch data"}
             </button>
-            {store.data.length ? (
-                <Table />
-            ) : isFetch ? (
-                <p>fetching...</p>
-            ) : (
-                <p>No data</p>
-            )}
+            {store.data.length ? <Table /> : <p>No data</p>}
         </div>
     );
 }

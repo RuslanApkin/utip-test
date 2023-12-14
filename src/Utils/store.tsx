@@ -37,10 +37,13 @@ class Store {
                 return response.json();
             })
             .then((fetched) => {
-                this.data = fetched.results.map((item: TData) => {
-                    return { ...item, id: this.idCounter++ };
-                });
-                this.count = fetched.count;
+                this.data = [
+                    ...this.data,
+                    ...fetched.results.map((item: TData) => {
+                        return { ...item, id: this.idCounter++ };
+                    })
+                ];
+                this.count += fetched.results.length;
             })
             .catch((err) => {
                 console.log(err.message);

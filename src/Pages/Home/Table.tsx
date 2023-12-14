@@ -22,8 +22,19 @@ function Table() {
             <table>
                 <thead>
                     <tr>
-                        {tableConfig.columnHeaders.map((title) => (
-                            <th>{title}</th>
+                        {tableConfig.columnHeaders.map((title, index) => (
+                            <th>
+                                {title}{" "}
+                                <button
+                                    onClick={() =>
+                                        store.sortData(
+                                            tableConfig.columnKeys[index]
+                                        )
+                                    }
+                                >
+                                    C
+                                </button>
+                            </th>
                         ))}
                     </tr>
                 </thead>

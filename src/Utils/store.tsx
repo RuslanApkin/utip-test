@@ -4,6 +4,15 @@ import { TData } from "../Types";
 const removeRow = (data: TData[], id: number): TData[] =>
     data.filter((data) => data.id !== id);
 
+const sortData = (data: any[], key: string): TData[] =>
+    data.sort((a, b) => {
+        if (!isNaN(a[key])) return a[key] - b[key];
+
+        if (a[key] < b[key]) return -1;
+        if (a[key] > b[key]) return 1;
+        return 0;
+    });
+
 class Store {
     data: TData[] = [];
     count: number = 0;
@@ -37,9 +46,14 @@ class Store {
                 console.log(err.message);
             });
     }
+
     clearData() {
         this.data = [];
         this.count = 0;
+    }
+
+    sortData(key: string) {
+        this.data = sortData(this.data, key);
     }
 }
 

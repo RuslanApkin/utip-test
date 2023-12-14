@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function AddRow() {
-  return (
-    <div>AddRow</div>
-  )
+    return <div>AddRow</div>;
 }
 
-export default AddRow
+export default AddRow;

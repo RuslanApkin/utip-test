@@ -15,8 +15,10 @@ type TData = {
 
 function Home() {
     const [data, setData] = useState<TData>();
-    const fetchData = () => {
-        fetch(`https://swapi.dev/api/people`)
+    const [isFetch, setFetch] = useState(false);
+    const fetchData = async () => {
+        setFetch(true);
+        await fetch(`https://swapi.dev/api/people`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(
@@ -29,32 +31,46 @@ function Home() {
             .catch((err) => {
                 console.log(err.message);
             });
+        setFetch(false);
     };
     return (
         <div>
             <h1>Table</h1>
-            <button onClick={fetchData}>Fetch data</button>
+            <button onClick={fetchData} disabled={isFetch}>
+                Fetch data
+            </button>
             {data ? (
-                <table>
-                    <thead>
-                        <tr>
-                            {tableConfig.columnHeaders.map((title) => (
-                                <th>{title}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.results.map((item) => {
-                            return (
-                                <tr>
-                                    {tableConfig.columnKeys.map((key) => {
-                                        return <td>{item[key]}</td>;
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                <>
+                    <table>
+                        <thead>
+                            <tr>
+                                {tableConfig.columnHeaders.map((title) => (
+                                    <th>{title}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.results.map((item) => {
+                                return (
+                                    <tr>
+                                        {tableConfig.columnKeys.map((key) => {
+                                            return <td>{item[key]}</td>;
+                                        })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                    <button
+                        onClick={() => {
+                            setData(undefined);
+                        }}
+                    >
+                        Clear
+                    </button>
+                </>
+            ) : isFetch ? (
+                <p>fetching...</p>
             ) : (
                 <p>No data</p>
             )}

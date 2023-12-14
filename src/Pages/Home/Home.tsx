@@ -1,36 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
 
-const tableConfig = {
-    columns: 5,
-    columnHeaders: ["Name", "Height", "Mass", "Gender", "Hair color"],
-    columnKeys: ["name", "height", "mass", "gender", "hair_color"]
-};
-
-type TData = {
-    count: number;
-    next: string;
-    prev: string;
-    results: Array<any>;
-};
+import store from "../../Utils/store";
+import Table from "./Table";
 
 function Home() {
-    const [data, setData] = useState<TData>();
     const [isFetch, setFetch] = useState(false);
+
     const fetchData = async () => {
         setFetch(true);
-        await fetch(`https://swapi.dev/api/people`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    );
-                }
-                return response.json();
-            })
-            .then((fetched) => setData(fetched))
-            .catch((err) => {
-                console.log(err.message);
-            });
+        await store.fetchData("https://swapi.dev/api/people");
         setFetch(false);
     };
     return (
@@ -39,36 +18,8 @@ function Home() {
             <button onClick={fetchData} disabled={isFetch}>
                 Fetch data
             </button>
-            {data ? (
-                <>
-                    <table>
-                        <thead>
-                            <tr>
-                                {tableConfig.columnHeaders.map((title) => (
-                                    <th>{title}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.results.map((item) => {
-                                return (
-                                    <tr>
-                                        {tableConfig.columnKeys.map((key) => {
-                                            return <td>{item[key]}</td>;
-                                        })}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                    <button
-                        onClick={() => {
-                            setData(undefined);
-                        }}
-                    >
-                        Clear
-                    </button>
-                </>
+            {store.data.length ? (
+                <Table />
             ) : isFetch ? (
                 <p>fetching...</p>
             ) : (
@@ -78,4 +29,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default observer(Home);

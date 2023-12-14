@@ -10,11 +10,7 @@ import Header from "./Components/Header";
 import AddRow from "./Pages/AddRow/AddRow";
 
 function App() {
-    return (
-        <>
-            <RouterProvider router={router} />
-        </>
-    );
+    return <RouterProvider router={router} />;
 }
 
 const router = createBrowserRouter([{ path: "*", Component: Root }]);

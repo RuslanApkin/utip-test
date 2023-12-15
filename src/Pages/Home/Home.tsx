@@ -14,7 +14,6 @@ function Home() {
       setTimeout(() => {
         setFetching((prevState) => (prevState + 1) % 3);
       }, 500);
-    console.log(fetchingStates[fetching]);
   }, [isFetch, fetching]);
 
   const fetchData = async () => {

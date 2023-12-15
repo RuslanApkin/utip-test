@@ -106,6 +106,11 @@ class Store {
     this.data = sortData(this.data, key);
     saveData(this.data, this.count, this.idCounter, this.page);
   }
+
+  addRow(data: TData) {
+    this.count = this.data.push({ ...data, id: this.idCounter++ });
+    saveData(this.data, this.count, this.idCounter, this.page);
+  }
 }
 
 const store = new Store();

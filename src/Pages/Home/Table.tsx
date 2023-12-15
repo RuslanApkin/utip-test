@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import store from "../../Utils/store";
 import Modal from "../../Components/Modal";
 
-const tableConfig = {
+export const tableConfig = {
   columns: 5,
   columnHeaders: ["Name", "Height", "Mass", "Gender", "Hair color"],
   columnKeys: ["name", "height", "mass", "gender", "hair_color"]

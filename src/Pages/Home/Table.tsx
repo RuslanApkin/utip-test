@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 
-import store from "../../Utils/store";
+import store, { tableConfig } from "../../Utils/store";
 import Modal from "../../Components/Modal";
-
-export const tableConfig = {
-  columns: 5,
-  columnHeaders: ["Name", "Height", "Mass", "Gender", "Hair color"],
-  columnKeys: ["name", "height", "mass", "gender", "hair_color"]
-};
 
 function Table() {
   const [modal, setModal] = useState<{ show: boolean; id: number }>({
@@ -26,14 +20,9 @@ function Table() {
       <table>
         <thead>
           <tr>
-            {tableConfig.columnHeaders.map((title, index) => (
+            {tableConfig.rows.map(({ title, key }) => (
               <th>
-                {title}{" "}
-                <button
-                  onClick={() => store.sortData(tableConfig.columnKeys[index])}
-                >
-                  C
-                </button>
+                {title} <button onClick={() => store.sortData(key)}>C</button>
               </th>
             ))}
           </tr>
@@ -42,7 +31,7 @@ function Table() {
           {store.data.map((item: any) => {
             return (
               <tr>
-                {tableConfig.columnKeys.map((key: string) => {
+                {tableConfig.rows.map(({ key }) => {
                   return <td>{item[key]}</td>;
                 })}
                 <button onClick={() => deleteItem(item.id)}>delete</button>

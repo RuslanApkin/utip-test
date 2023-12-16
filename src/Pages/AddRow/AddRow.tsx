@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { tableConfig } from "../Home/Table";
-import store from "../../Utils/store";
+import store, { tableConfig } from "../../Utils/store";
 import { TData } from "../../Types";
 import Modal from "../../Components/Modal";
 
 function AddRow() {
   const formObj: any = { id: 0 };
-  tableConfig.columnKeys.forEach((key: string) => {
+  tableConfig.rows.forEach(({ key }) => {
     formObj[key] = "";
   });
   const [formInput, setInput] = useState<TData>(formObj);
@@ -32,14 +31,10 @@ function AddRow() {
     <div>
       <h1>AddRow</h1>
       <form className="" onSubmit={() => store.addRow(formInput)}>
-        {tableConfig.columnHeaders.map((title, index) => (
+        {tableConfig.rows.map(({ title, key }) => (
           <div className="">
             <label>{title}</label>
-            <input
-              name={tableConfig.columnKeys[index]}
-              required
-              onChange={(e) => onInput(e)}
-            ></input>
+            <input name={key} required onChange={(e) => onInput(e)}></input>
           </div>
         ))}
         <button type="submit" disabled={!valid}>

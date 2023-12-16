@@ -1,6 +1,16 @@
 import { makeAutoObservable } from "mobx";
 import { TData } from "../Types";
 
+export const tableConfig = {
+  rows: [
+    { title: "Name", key: "name" },
+    { title: "Height", key: "height" },
+    { title: "Mass", key: "mass" },
+    { title: "Gender", key: "gender" },
+    { title: "Hair color", key: "hair_color" }
+  ]
+};
+
 const removeRow = (data: TData[], id: number): TData[] =>
   data.filter((data) => data.id !== id);
 

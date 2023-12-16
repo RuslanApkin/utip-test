@@ -13,7 +13,6 @@ function Table() {
   };
   const closeModal = () => {
     setModal({ id: -1, show: false });
-    document.body.style.overflow = "visible";
   };
   return (
     <>
@@ -48,7 +47,7 @@ function Table() {
         Clear
       </button>
       <Modal onClose={() => closeModal()} show={modal.show}>
-        delete row
+        <span>delete row</span>
         <button onClick={() => closeModal()}>Cancel</button>
         <button
           onClick={() => {

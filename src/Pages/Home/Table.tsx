@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import store, { tableConfig } from "../../Utils/store";
 import Modal from "../../Components/Modal";
+import "./Table.css";
 
 function Table() {
   const [modal, setModal] = useState<{ show: boolean; id: number }>({
@@ -20,8 +21,13 @@ function Table() {
         <thead>
           <tr>
             {tableConfig.rows.map(({ title, key }) => (
-              <th>
-                {title} <button onClick={() => store.sortData(key)}>C</button>
+              <th
+                onClick={() => store.sortData(key)}
+                className={
+                  "theader" + (store.sortedBy === key ? " theader--sorted" : "")
+                }
+              >
+                {title}
               </th>
             ))}
           </tr>

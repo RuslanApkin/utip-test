@@ -1,0 +1,8 @@
+.theader {
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.theader--sorted {
+  font-weight: bold;
+}

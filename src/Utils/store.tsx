@@ -3,11 +3,11 @@ import { TData } from "../Types";
 
 export const tableConfig = {
   rows: [
-    { title: "Name", key: "name" },
-    { title: "Height", key: "height" },
-    { title: "Mass", key: "mass" },
-    { title: "Gender", key: "gender" },
-    { title: "Hair color", key: "hair_color" }
+    { title: "Name", key: "name", type: "text" },
+    { title: "Height", key: "height", type: "number" },
+    { title: "Mass", key: "mass", type: "number" },
+    { title: "Gender", key: "gender", type: "text" },
+    { title: "Hair color", key: "hair_color", type: "text" }
   ]
 };
 

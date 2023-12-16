@@ -5,7 +5,7 @@ import Modal from "../../Components/Modal";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function AddRow() {
-  const formObj: any = { id: 0 };
+  const formObj: any = { id: -1 };
   tableConfig.rows.forEach(({ key }) => {
     formObj[key] = "";
   });
@@ -43,10 +43,15 @@ function AddRow() {
           }, 2000);
         }}
       >
-        {tableConfig.rows.map(({ title, key }) => (
+        {tableConfig.rows.map(({ title, key, type }) => (
           <div className="">
             <label>{title}</label>
-            <input name={key} required onChange={(e) => onInput(e)}></input>
+            <input
+              name={key}
+              required
+              onChange={(e) => onInput(e)}
+              type={type}
+            ></input>
           </div>
         ))}
         <button type="submit" disabled={!valid}>

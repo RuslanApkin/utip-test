@@ -17,6 +17,10 @@ function Table() {
   const deleteItem = (id: number) => {
     setModal({ show: true, id: id });
   };
+  const closeModal = () => {
+    setModal({ id: -1, show: false });
+    document.body.style.overflow = "visible";
+  };
   return (
     <>
       <table>
@@ -41,7 +45,7 @@ function Table() {
                 {tableConfig.columnKeys.map((key: string) => {
                   return <td>{item[key]}</td>;
                 })}
-                <td onClick={() => deleteItem(item.id)}>delete</td>
+                <button onClick={() => deleteItem(item.id)}>delete</button>
               </tr>
             );
           })}
@@ -54,13 +58,18 @@ function Table() {
       >
         Clear
       </button>
-      {modal.show ? (
-        <Modal setModal={setModal} action={() => store.removeRow(modal.id)}>
-          Delete row?
-        </Modal>
-      ) : (
-        <></>
-      )}
+      <Modal onClose={() => closeModal()} show={modal.show}>
+        delete row
+        <button onClick={() => closeModal()}>Cancel</button>
+        <button
+          onClick={() => {
+            store.removeRow(modal.id);
+            closeModal();
+          }}
+        >
+          Yes
+        </button>
+      </Modal>
     </>
   );
 }

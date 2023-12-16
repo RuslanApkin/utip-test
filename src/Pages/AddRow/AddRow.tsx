@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { tableConfig } from "../Home/Table";
 import store from "../../Utils/store";
 import { TData } from "../../Types";
+import Modal from "../../Components/Modal";
 
 function AddRow() {
   const formObj: any = { id: 0 };
@@ -45,6 +46,9 @@ function AddRow() {
           Submit
         </button>
       </form>
+      <Modal action={() => {}} setModal={() => {}}>
+        Row added
+      </Modal>
     </div>
   );
 }

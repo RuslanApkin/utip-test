@@ -8,7 +8,8 @@ export const tableConfig = {
     { title: "Mass", key: "mass", type: "number" },
     { title: "Gender", key: "gender", type: "text" },
     { title: "Hair color", key: "hair_color", type: "text" }
-  ]
+  ],
+  rpp: 10 //rpp - rows per page
 };
 
 const removeRow = (data: TData[], id: number): TData[] =>

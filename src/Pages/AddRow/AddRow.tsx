@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import store, { tableConfig } from "../../Utils/store";
 import { TData } from "../../Types";
 import Modal from "../../Components/Modal";
@@ -33,7 +33,7 @@ function AddRow() {
       <h1>AddRow</h1>
       <form
         className=""
-        onSubmit={(e) => {
+        onSubmit={(e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           store.addRow(formInput);
           setSuccess(true);

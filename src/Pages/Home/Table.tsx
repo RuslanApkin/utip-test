@@ -3,17 +3,28 @@ import React, { useState } from "react";
 import store, { tableConfig } from "../../Utils/store";
 import Modal from "../../Components/Modal";
 import "./Table.css";
+import Pagination from "../../Components/Pagination";
+import { TData } from "../../Types";
 
 function Table() {
   const [modal, setModal] = useState<{ show: boolean; id: number }>({
     show: false,
     id: -1
   });
+
+  const [page, setPage] = useState(0);
+
   const deleteItem = (id: number) => {
     setModal({ show: true, id: id });
   };
   const closeModal = () => {
     setModal({ id: -1, show: false });
+  };
+  const getRows = (page: number): TData[] => {
+    return store.data.slice(
+      page * tableConfig.rpp,
+      (page + 1) * tableConfig.rpp
+    );
   };
   return (
     <>
@@ -33,7 +44,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {store.data.map((item: any) => {
+          {getRows(page).map((item: any) => {
             return (
               <tr>
                 {tableConfig.rows.map(({ key }) => {
@@ -52,6 +63,11 @@ function Table() {
       >
         Clear
       </button>
+      <Pagination
+        page={page}
+        setPage={setPage}
+        pages={Math.floor((store.count - 1) / tableConfig.rpp) + 1}
+      />
       <Modal onClose={() => closeModal()} show={modal.show}>
         <span>delete row</span>
         <button onClick={() => closeModal()}>Cancel</button>

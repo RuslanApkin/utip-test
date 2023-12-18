@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
-import store from "../../Utils/store";
+import store from "../../Store/store";
 import Table from "./Table";
 
-function Home() {
+const Home = () => {
   const [isFetch, setFetch] = useState(false);
   const [fetching, setFetching] = useState(0);
   const fetchingStates = ["fetching.  ", "fetching.. ", "fetching..."];
@@ -30,6 +30,6 @@ function Home() {
       {store.data.length ? <Table /> : <p>No data</p>}
     </div>
   );
-}
+};
 
 export default observer(Home);

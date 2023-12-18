@@ -1,30 +1,11 @@
 import React from "react";
-import {
-  Route,
-  Routes,
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Header from "./Components/Header";
-import AddRow from "./Pages/AddRow/AddRow";
-
-function App() {
-  return <RouterProvider router={router} />;
-}
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Root } from "./Routing/Router";
 
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
-function Root() {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/addrow" element={<AddRow />} />
-      </Routes>
-    </>
-  );
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;

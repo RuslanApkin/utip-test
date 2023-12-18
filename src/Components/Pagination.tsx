@@ -8,7 +8,7 @@ interface IPagination {
   pages: number;
 }
 
-function Pagination({ page, setPage, pages }: IPagination) {
+const Pagination: FC<IPagination> = ({ page, setPage, pages }) => {
   const [pageValue, setPValue] = useState(page + 1 + "");
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -75,6 +75,6 @@ function Pagination({ page, setPage, pages }: IPagination) {
   ) : (
     <></>
   );
-}
+};
 
 export default Pagination;

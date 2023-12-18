@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from "react";
-import store, { tableConfig } from "../../Utils/store";
+import store, { tableConfig } from "../../Store/store";
 import { TData } from "../../Types";
 import Modal from "../../Components/Modal";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function AddRow() {
+const AddRow = () => {
   const formObj: any = { id: -1 };
   tableConfig.rows.forEach(({ key }) => {
     formObj[key] = "";
@@ -69,6 +69,6 @@ function AddRow() {
       </Modal>
     </div>
   );
-}
+};
 
 export default AddRow;

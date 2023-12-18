@@ -1,7 +1,13 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import "./Modal.css";
 
-const Modal: FC<any> = ({ show, onClose, children }) => {
+interface IModal {
+  show: boolean;
+  onClose: () => void;
+  children?: ReactNode | string;
+}
+
+const Modal: FC<IModal> = ({ show, onClose, children }) => {
   useEffect(() => {
     if (show) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "visible";

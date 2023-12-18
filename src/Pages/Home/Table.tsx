@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import store, { tableConfig } from "../../Utils/store";
+import store, { tableConfig } from "../../Store/store";
 import Modal from "../../Components/Modal";
 import "./Table.css";
 import Pagination from "../../Components/Pagination";
 import { TData } from "../../Types";
 
-function Table() {
+const Table = () => {
   const [modal, setModal] = useState<{ show: boolean; id: number }>({
     show: false,
     id: -1
@@ -82,6 +82,6 @@ function Table() {
       </Modal>
     </>
   );
-}
+};
 
 export default Table;

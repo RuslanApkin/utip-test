@@ -19,6 +19,7 @@ npm start
 - Fetching data to table from swapi.dev
 - Deleting rows with dialog window
 - Clearing table
-- Adaptive pagination
-- Adding rows
+- Adaptive pagination (when more than 4 pages)
+- Adding rows with validation on not empty strings
 - Saving state when page reloads
+- Sorting table by clicking on header cell

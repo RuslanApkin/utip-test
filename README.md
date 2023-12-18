@@ -16,8 +16,9 @@ npm start
 
 ## Features
 
--Fetching data to table from swapi.dev
--Deleting rows with dialog window
--Clearing table
--Adaptive pagination
--Adding rows
+- Fetching data to table from swapi.dev
+- Deleting rows with dialog window
+- Clearing table
+- Adaptive pagination
+- Adding rows
+- Saving state when page reloads

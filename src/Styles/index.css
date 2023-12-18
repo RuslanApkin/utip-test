@@ -1,0 +1,24 @@
+button {
+  cursor: pointer;
+}
+
+.btn {
+  padding: 0.25rem;
+  background: hsl(0, 0%, 98%);
+  border: 2px solid hsl(0, 0%, 20%);
+  border-radius: 0.5rem;
+  font-size: large;
+}
+
+.btn:hover {
+  background: hsl(0, 0, 97%);
+  transition: all 100ms;
+}
+
+.input {
+  padding: 0.25rem;
+  border: 2px solid hsl(0, 0%, 20%);
+  border-radius: 0.5rem;
+  font-size: large;
+  background-color: white;
+}

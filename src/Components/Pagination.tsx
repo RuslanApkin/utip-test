@@ -15,31 +15,36 @@ const Pagination: FC<IPagination> = ({ page, setPage, pages }) => {
     setPValue(page + 1 + "");
   }, [page]);
   return pages > 1 ? (
-    <div>
+    <div className="paginationSpacing">
       {pages < 5 ? (
         Array.from(Array(pages).keys()).map((val) => (
           <button
             onClick={() => setPage(val)}
-            className={"pageBtn" + (val === page ? " pageBtn--active" : "")}
+            className={
+              "btn paginationSpacing" + (val === page ? " pageBtn--active" : "")
+            }
           >
             {val + 1}
           </button>
         ))
       ) : (
         <>
-          <button onClick={() => setPage(0)} className="pageBtn">
+          <button onClick={() => setPage(0)} className="btn paginationSpacing">
             {"<<"}
           </button>
           <button
             onClick={() => (page - 1 >= 0 ? setPage(page - 1) : {})}
-            className="pageBtn"
+            className="btn paginationSpacing"
           >
             {"<"}
           </button>
           <input
             type="number"
             max={pages}
-            className={"pageBtn" + (error ? " pageInput--error" : "")}
+            className={
+              "input paginationSpacing pageInput" +
+              (error ? " pageInput--error" : "")
+            }
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
               if (e.code === "Enter")
                 if (
@@ -59,14 +64,17 @@ const Pagination: FC<IPagination> = ({ page, setPage, pages }) => {
             }}
             value={pageValue}
           />
-          <span className="">of {pages}</span>
+          <span className="paginationSpacing">of {pages}</span>
           <button
             onClick={() => (page + 1 < pages ? setPage(page + 1) : {})}
-            className="pageBtn"
+            className="btn paginationSpacing"
           >
             {">"}
           </button>
-          <button onClick={() => setPage(pages - 1)} className="pageBtn">
+          <button
+            onClick={() => setPage(pages - 1)}
+            className="btn paginationSpacing"
+          >
             {">>"}
           </button>
         </>

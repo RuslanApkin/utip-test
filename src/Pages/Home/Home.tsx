@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 import store from "../../Store/store";
-import Table from "./Table";
+import Table from "../../Components/Table";
 
 const Home = () => {
   const [isFetch, setFetch] = useState(false);
@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div>
       <h1>Table</h1>
-      <button onClick={fetchData} disabled={isFetch}>
+      <button onClick={fetchData} disabled={isFetch} className="btn">
         {isFetch ? fetchingStates[fetching] : "Fetch data"}
       </button>
       {store.data.length ? <Table /> : <p>No data</p>}

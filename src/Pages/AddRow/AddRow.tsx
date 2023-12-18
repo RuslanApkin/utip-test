@@ -1,15 +1,15 @@
 import React, { FormEvent, useState } from "react";
 import store, { tableConfig } from "../../Store/store";
-import { TData } from "../../Types";
 import Modal from "../../Components/Modal";
 import { useNavigate } from "react-router-dom";
+import "./AddRow.css";
 
 const AddRow = () => {
   const formObj: any = { id: -1 };
   tableConfig.rows.forEach(({ key }) => {
     formObj[key] = "";
   });
-  const [formInput, setInput] = useState<TData>(formObj);
+  const [formInput, setInput] = useState(formObj);
   const [valid, setValid] = useState(false);
   const [success, setSuccess] = useState(false);
   let navigate = useNavigate();
@@ -30,9 +30,9 @@ const AddRow = () => {
 
   return (
     <div>
-      <h1>AddRow</h1>
+      <h1>Add Row</h1>
       <form
-        className=""
+        className="addRowForm"
         onSubmit={(e: FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           store.addRow(formInput);
@@ -44,17 +44,18 @@ const AddRow = () => {
         }}
       >
         {tableConfig.rows.map(({ title, key, type }) => (
-          <div className="">
+          <div className="inputWrapper">
             <label>{title}</label>
             <input
               name={key}
               required
               onChange={(e) => onInput(e)}
               type={type}
+              className="input"
             ></input>
           </div>
         ))}
-        <button type="submit" disabled={!valid}>
+        <button type="submit" disabled={!valid} className="btn addBtn">
           Submit
         </button>
       </form>

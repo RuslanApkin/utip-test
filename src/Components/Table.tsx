@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import store, { tableConfig } from "../../Store/store";
-import Modal from "../../Components/Modal";
+import store, { tableConfig } from "../Store/store";
+import Modal from "./Modal";
 import "./Table.css";
-import Pagination from "../../Components/Pagination";
-import { TData } from "../../Types";
+import Pagination from "./Pagination";
+import { TData } from "../Types";
 
 const Table = () => {
   const [modal, setModal] = useState<{ show: boolean; id: number }>({
@@ -27,20 +27,24 @@ const Table = () => {
     );
   };
   return (
-    <>
+    <div className="tableWrapper">
       <table>
         <thead>
           <tr>
             {tableConfig.rows.map(({ title, key }) => (
-              <th
-                onClick={() => store.sortData(key)}
-                className={
-                  "theader" + (store.sortedBy === key ? " theader--sorted" : "")
-                }
-              >
-                {title}
+              <th>
+                <button
+                  onClick={() => store.sortData(key)}
+                  className={
+                    "theader" +
+                    (store.sortedBy === key ? " theader--sorted" : "")
+                  }
+                >
+                  {title}
+                </button>
               </th>
             ))}
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +54,14 @@ const Table = () => {
                 {tableConfig.rows.map(({ key }) => {
                   return <td>{item[key]}</td>;
                 })}
-                <button onClick={() => deleteItem(item.id)}>delete</button>
+                <td>
+                  <button
+                    onClick={() => deleteItem(item.id)}
+                    className="tDeleteBtn"
+                  >
+                    delete
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -60,6 +71,7 @@ const Table = () => {
         onClick={() => {
           store.clearData();
         }}
+        className="btn"
       >
         Clear
       </button>
@@ -69,18 +81,23 @@ const Table = () => {
         pages={Math.floor((store.count - 1) / tableConfig.rpp) + 1}
       />
       <Modal onClose={() => closeModal()} show={modal.show}>
-        <span>delete row</span>
-        <button onClick={() => closeModal()}>Cancel</button>
-        <button
-          onClick={() => {
-            store.removeRow(modal.id);
-            closeModal();
-          }}
-        >
-          Yes
-        </button>
+        <p className="deleteModalP">Delete row?</p>
+        <div className="modalBtnWrapper">
+          <button onClick={() => closeModal()} className="btn">
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              store.removeRow(modal.id);
+              closeModal();
+            }}
+            className="btn"
+          >
+            Yes
+          </button>
+        </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

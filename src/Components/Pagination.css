@@ -1,18 +1,17 @@
-.pageBtn {
+.paginationSpacing {
   margin-right: 0.5rem;
-  padding: 0.25rem;
-  width: 4ch;
-  background: #fff;
-  border: 2px solid #808080;
-  border-radius: 0.5rem;
 }
 
-.pageBtn:last-child {
+.paginationSpacing:last-child {
   margin-left: 0;
 }
 
 .pageBtn--active {
   font-weight: bold;
+}
+
+.pageInput {
+  width: 3ch;
 }
 
 .pageInput--error {

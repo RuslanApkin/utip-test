@@ -1,0 +1,19 @@
+.Header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.headerLogo {
+  width: 5ch;
+  line-height: 1rem;
+}
+
+.navLink {
+  color: black;
+  font-size: large;
+}
+
+.navLink:hover {
+  color: hsl(0, 0%, 40%);
+}

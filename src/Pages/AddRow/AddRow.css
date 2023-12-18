@@ -1,0 +1,30 @@
+.addRowForm {
+  display: grid;
+  width: min-content;
+  gap: 0.5rem;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.inputWrapper label {
+  white-space: nowrap;
+}
+
+.addBtn:enabled:hover {
+  background: hsl(130, 30%, 99%);
+  border-color: hsl(130, 75%, 30%);
+}
+
+.addBtn:enabled {
+  background: hsl(130, 30%, 97%);
+  border-color: hsl(130, 75%, 20%);
+}
+
+.addBtn:disabled {
+  background-color: hsl(0, 0%, 99%);
+  border-color: darkgrey;
+}
